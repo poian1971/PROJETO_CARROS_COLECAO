@@ -1,0 +1,237 @@
+/* Configuração geral para zerar margens e alinhar o modelo de caixa */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centraliza o card no meio da tela com um fundo suave */
+body {
+    font-family: 'Montserrat', sans-serif; /* Substitui a antiga 'Segoe UI' */
+    color: #2C241E;                        /* Define o tom café/bronze como padrão para os textos */
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 80px;                     /* Evita que o conteúdo fique escondido atrás do header fixo */
+}
+
+/* Contêiner fixo atrás de todo o conteúdo */
+.video-fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;          /* Envia o vídeo para trás dos textos e cards */
+    overflow: hidden;
+}
+
+/* Faz o vídeo preencher a tela sem distorcer (equivalente ao background-size: cover) */
+.video-fundo video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Camada translúcida para garantir contraste e legibilidade nos textos */
+.pelicula-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(245, 242, 235, 0.82); /* Mesmo tom bege #F5F2EB do logo */
+}
+
+/* Configuração do Cabeçalho */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+
+    background-image: 
+        linear-gradient(90deg, rgba(20, 15, 10, 0.30) 0%, rgba(20, 15, 10, 0.60) 100%),
+        url('/img/carros-antigos.jpeg'); /* Caminho atualizado com a pasta img/ */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* Estilização da barra de navegação */
+.navbar {
+    margin-right: 30px;        /* <-- AQUI: Afasta a navbar da borda direita da tela! */
+}
+
+/* Deixa os links do menu alinhados lado a lado (opcional, mas recomendado) */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;                 /* Espaço entre um link e outro */
+}
+
+/* 3. Links do menu em tom claro com sombra suave para leitura perfeita */
+.navbar a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    color: #F5F2EB;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+    transition: color 0.2s ease;
+}
+
+.navbar a:hover {
+    color: #E2B86B; /* Destaque dourado ao passar o mouse */
+}
+
+/* 2. Recorta o retângulo bege e transforma o logo em uma medalha redonda */
+.logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #C5A059; /* Borda dourada combinando com o emblema */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+/* Dimensiona o logo para caber perfeitamente dentro do header */
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.22); /* Ajusta o zoom para esconder as bordas bege da imagem */
+    display: block;
+}
+
+.titulo-colecao {
+    text-align: center;
+    width: 100%;
+    background-color: #F5F2EB;
+    padding: 45px 20px;
+    margin: 0 0 35px 0;
+    border-bottom: 1px solid #E2DCD0;
+}
+
+.titulo-colecao p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #5A4D41;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+
+
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #2C241E;
+    margin-bottom: 8px;
+}
+
+/* Estrutura visual do Card */
+.card {
+    background: #ffffff;
+    width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Esconde qualquer elemento que vaze para fora do card */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container que guarda as fotos e os botões */
+.carousel-container {
+    position: relative; /* Necessário para posicionar as setas por cima das imagens */
+    width: 100%;
+    height: 220px;
+    background-color: #000;
+}
+
+/* Trilha flexível que organiza as imagens horizontalmente */
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;          /* Permite rolar para os lados */
+    scroll-snap-type: x mandatory; /* Faz a rolagem "grudar" exatamente no início de cada foto */
+    scroll-behavior: smooth;     /* Deixa a rolagem fluida */
+    scrollbar-width: none;     /* Oculta a barra de rolagem no navegador Firefox */
+}
+
+/* Oculta a barra de rolagem nos navegadores Chrome, Safari e Edge */
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cada imagem individual do carrossel */
+.carousel-image {
+    flex: 0 0 100%;            /* Força cada imagem a ocupar exatamente 100% da largura do container */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Garante que a foto preencha o espaço sem distorcer */
+    scroll-snap-align: start;  /* Define o ponto de parada magnética da foto */
+}
+
+/* Estilização comum para os botões de seta (Anterior e Próximo) */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centraliza verticalmente de forma exata */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;          /* Deixa o botão redondo */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background-color 0.2s;
+    z-index: 10;                 /* Garante que fiquem acima das imagens */
+}
+
+/* Efeito ao passar o mouse por cima da seta */
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Posiciona a seta esquerda no canto esquerdo */
+.btn-prev {
+    left: 10px;
+}
+
+/* Posiciona a seta direita no canto direito */
+.btn-next {
+    right: 10px;
+}
+
+/* Área de texto localizada na parte inferior do card */
+.card-content {
+    padding: 16px;
+}
+
+.card-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
